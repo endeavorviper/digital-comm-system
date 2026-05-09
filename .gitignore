@@ -1,0 +1,20 @@
+# MATLAB 自动生成图片
+*.png
+*.jpg
+output/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# PPT 生成结果
+*.pptx
+
+# MATLAB
+*.asv
+*.mexw64
+*.p
+
+# OS
+.DS_Store
+Thumbs.db
