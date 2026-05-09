@@ -69,9 +69,9 @@ ENCODE_METHOD = 'huffman'; % 'huffman' / 'shannon' / 'fano'
 ## 理论说明
 
 ### 香农编码
-- 码长：$l_i = \lceil -\log_2 p_i \rceil$
-- 累积概率 $F_i = \sum_{j<i} p_j$ 的二进制展开取前 $l_i$ 位作为码字
-- **效率**：$H \leq \bar{L} < H+1$
+- 码长：lᵢ = ⌈−log₂ pᵢ⌉
+- 累积概率 Fᵢ = Σⱼ₌₁ⁱ⁻¹ pⱼ 的二进制展开取前 lᵢ 位作为码字
+- **效率**：H ≤ L̄ < H+1
 
 ### 费诺编码
 - 递归二分：每次找使两组概率和之差最小的分割点
@@ -81,20 +81,26 @@ ENCODE_METHOD = 'huffman'; % 'huffman' / 'shannon' / 'fano'
 ### 哈夫曼编码
 - 每次合并概率最小的两个节点构造最优二叉树
 - 是所有前缀码中平均码长最短的方案（最优性证明：Huffman, 1952）
-- **效率**：$H \leq \bar{L}_{\text{Huffman}} < H+1$（最优）
+- **效率**：H ≤ L̄_Huffman < H+1（最优）
 
 ### BSC 信道
-$$P(y|x) = \begin{cases} 1-p & y=x \\ p & y\neq x \end{cases}$$
+```
+P(y|x) =  1−p   若 y=x
+          p      若 y≠x
+```
+p = 误码率（0 ~ 0.5）
 
 ### 极大似然（ML）译码
-$$\hat{c} = \arg\max_{c_i} P(\mathbf{r}|c_i) = \arg\min_{c_i} d_H(\mathbf{r}, c_i)$$
-
-BSC下等价于最小汉明距离判决。
+```
+ĉ = argmax P(r|cᵢ) = argmin d_H(r, cᵢ)
+```
+BSC 下等价于最小汉明距离判决。
 
 ### 最大后验概率（MAP）译码
-$$\hat{c} = \arg\max_{c_i} P(c_i|\mathbf{r}) \propto P(\mathbf{r}|c_i) \cdot P(c_i)$$
-
-引入先验概率 $P(c_i)$，高频符号在噪声下更不容易被误判，性能优于 ML（当先验不均匀时）。
+```
+ĉ = argmax P(cᵢ|r) ∝ P(r|cᵢ) · P(cᵢ)
+```
+引入先验概率 P(cᵢ)，高频符号在噪声下更不容易被误判，性能优于 ML（当先验不均匀时）。
 
 ## 可视化输出
 
